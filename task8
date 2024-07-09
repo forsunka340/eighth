@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+int factorial(int n) {
+    if (n == 0) return 1;
+    return n * factorial(n - 1);
+}
+
+int main() {
+    char word[15];
+    int count[26] = {0};
+    scanf("%s", word);
+    
+    int len = strlen(word);
+    for (int i = 0; i < len; i++) {
+        count[word[i] - 'A']++;
+    }
+    
+    int result = factorial(len);
+    for (int i = 0; i < 26; i++) {
+        if (count[i] > 1) {
+            result /= factorial(count[i]);
+        }
+    }
+    
+    printf("%d\n", result);
+    return 0;
+}
